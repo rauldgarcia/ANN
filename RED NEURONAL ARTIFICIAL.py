@@ -4,6 +4,8 @@ Created on Sun Mar 27 12:34:30 2022
 
 @author: pingu
 """
+import time
+inicio=time.time()
 import math
 def getExp(n):
     return math.exp(n)
@@ -15,7 +17,7 @@ x1=1.0
 x2=0.25
 x3=-0.5
 output1=1.0
-output2=1.0
+output2=0.5
 output3=0
 
 v1=random.random()
@@ -35,8 +37,8 @@ w6=random.random()
 n=0.25
 
 plt.show()
-
-for i in range(100):
+operacion=20
+for i in range(25):
     
     '''Entrada capa media'''
     entrada4=(x1*v1)+(x2*v3)+(x3*v5)
@@ -62,6 +64,7 @@ for i in range(100):
     error8=(salida8-output3)**2
     errortotal=error6+error7+error8
     
+    plt.figure(1)
     plt.plot(i,error6,'o',color='r')
     plt.plot(i,error7,'o',color='g')
     plt.plot(i,error8,'o',color='b')
@@ -151,8 +154,30 @@ for i in range(100):
     w4=w4+ajustew4
     w5=w5+ajustew5
     w6=w6+ajustew6
+    plt.figure(2)
+    plt.grid()
+    tiempo=time.time()
+    plt.plot(tiempo,i/10,'o',linewidth=0.8,color='tab:purple',label='Y=n/10')
+    plt.plot(tiempo,i,'o',linewidth=0.8,color='tab:orange',label='Y=n')
+    plt.plot(tiempo,i*0.5,'o',linewidth=0.8,color='tab:gray',label='Y=0.5n')
+    plt.plot(tiempo,i**1.5,'o',linewidth=0.8,color='tab:cyan',label='Y=n1.5')
+    plt.plot(tiempo,2**(i/3),'o',color='tab:pink',label='Y=2(n/3)')
+    plt.xlabel('Tiempo',)
+    plt.ylabel('Iteración')
+    plt.title('Analisis Asintotico')
+    #plt.legend()
+    plt.figure(3)
+    plt.grid()
+    plt.plot(i,tiempo,'o',linewidth=0.8,color='tab:brown')
+    plt.xlabel('Iteración')
+    plt.ylabel('Tiempo')
+    plt.title('Tiempo-Iteración')
 
+plt.legend();   
 print('Salidas:')    
 print(salida6)
 print(salida7)
 print(salida8)
+print('\n')
+fin=time.time()
+print(fin-inicio)
